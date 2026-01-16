@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import image from './yfh.png'
 function App() {
   const [showTicket, setShowTicket] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,9 +43,10 @@ function App() {
           {/* HEADER */}
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white text-orange-500 rounded-full flex items-center justify-center font-bold">
-                IR
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                <img src={image}  className="w-10 h-10 object-contain" />
               </div>
+
               <div>
                 <h1 className="text-lg font-semibold">UTS</h1>
                 <p className="text-sm opacity-90">IR Unreserved Ticketing</p>
