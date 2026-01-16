@@ -187,13 +187,13 @@ function App() {
                 <div className="flex justify-between font-semibold">
                   <div className="flex items-center gap-2">
                     <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                      S
+                      DUI
                     </span>
                     DHURI JN.
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                      D
+                      HW
                     </span>
                     HARIDWAR JN.
                   </div>
