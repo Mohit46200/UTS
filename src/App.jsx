@@ -147,17 +147,17 @@ function App() {
               <div className="p-4 space-y-3 text-sm">
                 <div className="flex justify-between font-semibold text-orange-500">
                   <span>JOURNEY ( M-TICKET )</span>
-                  <span>FARE: ₹30.00</span>
+                  <span>FARE: ₹105.00</span>
                 </div>
 
                 <div className="flex justify-between">
                   <div>
                     <p className="text-xs text-gray-500">From</p>
-                    <p className="font-semibold">LUDHIANA JN.</p>
+                    <p className="font-semibold">Dhuri JN.</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">To</p>
-                    <p className="font-semibold">DHANDARI KALAN</p>
+                    <p className="font-semibold">Haridwar Jn.</p>
                   </div>
                 </div>
 
@@ -165,14 +165,11 @@ function App() {
                   <p>Adult: 1 &nbsp; Child: 0</p>
                   <p>Class: SECOND (II)</p>
                   <p>Type: MAIL/EXP (M/E)</p>
-                  <p>Booking Date: 30/04/2024 23:06</p>
+                  <p>Booking Date: 17/01/2025 07:09</p>
                   <p>UTS No: XCGMDS901F</p>
                 </div>
 
                 <div className="flex justify-between pt-3">
-                  <button className="text-orange-500 font-semibold">
-                    ▶ VIEW TICKET
-                  </button>
                   <button className="text-orange-500 font-semibold">
                     ⟳ NEXT TRAINS
                   </button>
