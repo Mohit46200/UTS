@@ -186,13 +186,13 @@ function App() {
               <div className="p-4 space-y-3 text-sm">
                 <div className="flex justify-between font-semibold">
                   <div className="flex items-center gap-2">
-                    <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    <span className="bg-orange-400 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs">
                       DUI
                     </span>
                     DHURI JN.
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    <span className="bg-orange-400 text-white rounded-full w-7 h-7 flex items-center justify-center text-xs">
                       HW
                     </span>
                     HARIDWAR JN.
