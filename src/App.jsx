@@ -212,8 +212,10 @@ function App() {
   {/* PAPERLESS CIRCLE - CENTERED */}
   <div className="flex items-center justify-center">
     <div className="w-28 h-28 border-2 border-green-500 rounded-full flex flex-col items-center justify-center text-green-600 text-xs font-semibold leading-tight">
+      <div className="w-25 h-25 border-2 border-green-500 rounded-full flex flex-col items-center justify-center text-green-600 text-xs font-semibold leading-tight">
       <span>PAPERLESS</span>
       <span className="text-[10px]">SECOND (II)</span>
+    </div>
     </div>
   </div>
 </div>
