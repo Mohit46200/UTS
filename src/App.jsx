@@ -18,18 +18,16 @@ function App() {
   return (
     <div className="bg-gray-100 min-h-screen font-sans relative">
 
-      {/* ================= LOADING SCREEN ================= */}
+      {/* ================= LOADING ================= */}
       {loading && (
         <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
-          <h1 className="text-2xl font-semibold text-orange-500">
-            Loading...
-          </h1>
+          <h1 className="text-2xl font-semibold text-orange-500">Loading...</h1>
         </div>
       )}
 
-      {/* ================= NO INTERNET SCREEN ================= */}
+      {/* ================= NO INTERNET ================= */}
       {noInternet && (
-        <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50 text-center">
+        <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50">
           <h1 className="text-2xl font-semibold text-red-500">
             No Internet Connection
           </h1>
@@ -91,9 +89,9 @@ function App() {
                 key={i}
                 onClick={() => {
                   if (item === "SHOW TICKET") {
-                    setShowTicket(true);   // NO loading
+                    setShowTicket(true); // ✅ NO loading
                   } else {
-                    startLoading();        // loading for others
+                    startLoading();
                   }
                 }}
                 className="bg-white shadow rounded p-3 cursor-pointer"
@@ -166,9 +164,10 @@ function App() {
       {/* ================= SHOW TICKET PAGE ================= */}
       {showTicket && !loading && !noInternet && (
         <>
+          {/* HEADER */}
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center gap-3">
             <button
-              onClick={() => setShowTicket(false)} // NO loading
+              onClick={() => setShowTicket(false)}
               className="text-xl font-bold"
             >
               ←
@@ -176,36 +175,53 @@ function App() {
             <h1 className="text-lg font-semibold">Show Ticket</h1>
           </div>
 
+          {/* TICKET CARD (MATCHING IMAGE) */}
           <div className="p-4">
             <div className="bg-white rounded shadow overflow-hidden">
-              <div className="bg-orange-400 text-white px-4 py-2 font-semibold">
-                SHOW TICKET
+              <div className="bg-gradient-to-r from-orange-400 to-orange-500 px-4 py-2 flex justify-between font-semibold text-sm">
+                <span>JOURNEY ( M-TICKET )</span>
+                <span>FARE: ₹105.00</span>
               </div>
 
               <div className="p-4 space-y-3 text-sm">
-                <div className="flex justify-between font-semibold text-orange-500">
-                  <span>JOURNEY ( M-TICKET )</span>
-                  <span>FARE: ₹105.00</span>
+                <div className="flex justify-between font-semibold">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                      S
+                    </span>
+                    DHURI JN.
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="bg-orange-400 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                      D
+                    </span>
+                    HARIDWAR JN.
+                  </div>
                 </div>
 
-                <div className="flex justify-between">
-                  <p className="font-semibold">Dhuri JN.</p>
-                  <p className="font-semibold">Haridwar Jn.</p>
-                </div>
+              <div className="flex items-center gap-4">
+  {/* DETAILS - LEFT */}
+  <div className="flex-1 text-xs text-gray-600 space-y-1">
+    <p>TRAIN TYPE: MAIL/EXPRESS</p>
+    <p>ADULT: 1 &nbsp; CHILD: 0</p>
+    <p>ORDINARY (O)</p>
+    <p>BOOKING DATE: 17/01/2026  07:09:52</p>
+    <p>UTS NO.119AE990D8</p>
+  </div>
 
-                <div className="border-t pt-2 text-xs text-gray-600 space-y-1">
-                  <p>Adult: 1</p>
-                  <p>Class: SECOND (II)</p>
-                  <p>Booking Date: 17/01/2025 07:09</p>
-                </div>
+  {/* PAPERLESS CIRCLE - CENTERED */}
+  <div className="flex items-center justify-center">
+    <div className="w-28 h-28 border-2 border-green-500 rounded-full flex flex-col items-center justify-center text-green-600 text-xs font-semibold leading-tight">
+      <span>PAPERLESS</span>
+      <span className="text-[10px]">SECOND (II)</span>
+    </div>
+  </div>
+</div>
 
-                <div className="flex justify-end pt-3">
-                  <button
-                    onClick={startLoading}
-                    className="text-orange-500 font-semibold"
-                  >
-                    ⟳ NEXT TRAINS
-                  </button>
+
+                <div className="flex justify-between pt-3 text-orange-500 font-semibold text-xs">
+                  <span>↺ BOOK AGAIN</span>
+                  <span>🔍 NEXT TRAINS</span>
                 </div>
               </div>
             </div>
