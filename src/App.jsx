@@ -2,12 +2,47 @@ import { useState } from "react";
 
 function App() {
   const [showTicket, setShowTicket] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [noInternet, setNoInternet] = useState(false);
+
+  const startLoading = (action) => {
+    setLoading(true);
+    setNoInternet(false);
+
+    setTimeout(() => {
+      setLoading(false);
+      setNoInternet(true);
+    }, 20000);
+
+    if (action) action();
+  };
 
   return (
-    <div className="bg-gray-100 min-h-screen font-sans">
+    <div className="bg-gray-100 min-h-screen font-sans relative">
+
+      {/* ================= LOADING SCREEN ================= */}
+      {loading && (
+        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+          <h1 className="text-2xl font-semibold text-orange-500">
+            Loading...
+          </h1>
+        </div>
+      )}
+
+      {/* ================= NO INTERNET SCREEN ================= */}
+      {noInternet && (
+        <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-50 text-center">
+          <h1 className="text-2xl font-semibold text-red-500">
+            No Internet Connection
+          </h1>
+          <p className="text-gray-500 mt-2">
+            Please check your network and try again
+          </p>
+        </div>
+      )}
 
       {/* ================= HOME PAGE ================= */}
-      {!showTicket && (
+      {!showTicket && !loading && !noInternet && (
         <>
           {/* HEADER */}
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center justify-between">
@@ -20,7 +55,10 @@ function App() {
                 <p className="text-sm opacity-90">IR Unreserved Ticketing</p>
               </div>
             </div>
-            <button className="bg-red-500 px-4 py-1 rounded-full text-sm">
+            <button
+              onClick={() => startLoading()}
+              className="bg-red-500 px-4 py-1 rounded-full text-sm"
+            >
               LOGIN
             </button>
           </div>
@@ -34,12 +72,7 @@ function App() {
               "Platform Ticket",
               "Season Ticket",
             ].map((item, i) => (
-              <div
-                key={i}
-                className={`flex flex-col items-center ${
-                  i === 0 ? "text-orange-500" : "text-gray-600"
-                }`}
-              >
+              <div key={i} className="flex flex-col items-center text-gray-600">
                 <div className="w-8 h-8 bg-orange-100 rounded-full mb-1"></div>
                 <span>{item}</span>
               </div>
@@ -58,7 +91,13 @@ function App() {
             ].map((item, i) => (
               <div
                 key={i}
-                onClick={() => item === "SHOW TICKET" && setShowTicket(true)}
+                onClick={() =>
+                  startLoading(
+                    item === "SHOW TICKET"
+                      ? () => setShowTicket(true)
+                      : null
+                  )
+                }
                 className="bg-white shadow rounded p-3 cursor-pointer"
               >
                 <div className="w-8 h-8 mx-auto bg-orange-100 rounded-full mb-2"></div>
@@ -76,11 +115,11 @@ function App() {
             <div className="p-4 space-y-4">
               <div className="flex gap-6 text-sm">
                 <label className="flex items-center gap-2">
-                  <input type="radio" name="booking" />
+                  <input type="radio" />
                   Book & Travel (Paperless)
                 </label>
                 <label className="flex items-center gap-2">
-                  <input type="radio" name="booking" />
+                  <input type="radio" />
                   Book & Print (Paper)
                 </label>
               </div>
@@ -89,25 +128,25 @@ function App() {
                 <div>
                   <p className="text-xs text-gray-500">Depart from</p>
                   <h2 className="text-lg font-semibold">STN</h2>
-                  <p className="text-xs text-gray-400">Station Name</p>
-                  <div className="h-0.5 bg-orange-400 mt-1"></div>
                 </div>
-
                 <div className="text-xl text-gray-400">⇄</div>
-
                 <div>
                   <p className="text-xs text-gray-500">Going to</p>
                   <h2 className="text-lg font-semibold">STN</h2>
-                  <p className="text-xs text-gray-400">Station Name</p>
-                  <div className="h-0.5 bg-orange-400 mt-1"></div>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <button className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full">
+                <button
+                  onClick={() => startLoading()}
+                  className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full"
+                >
                   NEXT TRAINS
                 </button>
-                <button className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full">
+                <button
+                  onClick={() => startLoading()}
+                  className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full"
+                >
                   GET FARE
                 </button>
               </div>
@@ -116,7 +155,10 @@ function App() {
 
           {/* HELP */}
           <div className="fixed bottom-6 right-6">
-            <button className="w-14 h-14 bg-orange-500 text-white rounded-full shadow-lg text-xl">
+            <button
+              onClick={() => startLoading()}
+              className="w-14 h-14 bg-orange-500 text-white rounded-full shadow-lg text-xl"
+            >
               ?
             </button>
           </div>
@@ -124,12 +166,11 @@ function App() {
       )}
 
       {/* ================= SHOW TICKET PAGE ================= */}
-      {showTicket && (
+      {showTicket && !loading && !noInternet && (
         <>
-          {/* HEADER */}
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center gap-3">
             <button
-              onClick={() => setShowTicket(false)}
+              onClick={() => startLoading(() => setShowTicket(false))}
               className="text-xl font-bold"
             >
               ←
@@ -137,7 +178,6 @@ function App() {
             <h1 className="text-lg font-semibold">Show Ticket</h1>
           </div>
 
-          {/* TICKET CARD */}
           <div className="p-4">
             <div className="bg-white rounded shadow overflow-hidden">
               <div className="bg-orange-400 text-white px-4 py-2 font-semibold">
@@ -151,26 +191,21 @@ function App() {
                 </div>
 
                 <div className="flex justify-between">
-                  <div>
-                    <p className="text-xs text-gray-500">From</p>
-                    <p className="font-semibold">Dhuri JN.</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500">To</p>
-                    <p className="font-semibold">Haridwar Jn.</p>
-                  </div>
+                  <p className="font-semibold">Dhuri JN.</p>
+                  <p className="font-semibold">Haridwar Jn.</p>
                 </div>
 
                 <div className="border-t pt-2 text-xs text-gray-600 space-y-1">
-                  <p>Adult: 1 &nbsp; Child: 0</p>
+                  <p>Adult: 1</p>
                   <p>Class: SECOND (II)</p>
-                  <p>Type: MAIL/EXP (M/E)</p>
                   <p>Booking Date: 17/01/2025 07:09</p>
-                  <p>UTS No: XCGMDS901F</p>
                 </div>
 
-                <div className="flex justify-between pt-3">
-                  <button className="text-orange-500 font-semibold">
+                <div className="flex justify-end pt-3">
+                  <button
+                    onClick={() => startLoading()}
+                    className="text-orange-500 font-semibold"
+                  >
                     ⟳ NEXT TRAINS
                   </button>
                 </div>
