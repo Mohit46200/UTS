@@ -5,7 +5,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [noInternet, setNoInternet] = useState(false);
 
-  const startLoading = (action) => {
+  const startLoading = () => {
     setLoading(true);
     setNoInternet(false);
 
@@ -13,8 +13,6 @@ function App() {
       setLoading(false);
       setNoInternet(true);
     }, 20000);
-
-    if (action) action();
   };
 
   return (
@@ -56,7 +54,7 @@ function App() {
               </div>
             </div>
             <button
-              onClick={() => startLoading()}
+              onClick={startLoading}
               className="bg-red-500 px-4 py-1 rounded-full text-sm"
             >
               LOGIN
@@ -91,13 +89,13 @@ function App() {
             ].map((item, i) => (
               <div
                 key={i}
-                onClick={() =>
-                  startLoading(
-                    item === "SHOW TICKET"
-                      ? () => setShowTicket(true)
-                      : null
-                  )
-                }
+                onClick={() => {
+                  if (item === "SHOW TICKET") {
+                    setShowTicket(true);   // NO loading
+                  } else {
+                    startLoading();        // loading for others
+                  }
+                }}
                 className="bg-white shadow rounded p-3 cursor-pointer"
               >
                 <div className="w-8 h-8 mx-auto bg-orange-100 rounded-full mb-2"></div>
@@ -138,13 +136,13 @@ function App() {
 
               <div className="flex gap-4">
                 <button
-                  onClick={() => startLoading()}
+                  onClick={startLoading}
                   className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full"
                 >
                   NEXT TRAINS
                 </button>
                 <button
-                  onClick={() => startLoading()}
+                  onClick={startLoading}
                   className="flex-1 bg-gradient-to-r from-orange-400 to-orange-500 text-white py-2 rounded-full"
                 >
                   GET FARE
@@ -156,7 +154,7 @@ function App() {
           {/* HELP */}
           <div className="fixed bottom-6 right-6">
             <button
-              onClick={() => startLoading()}
+              onClick={startLoading}
               className="w-14 h-14 bg-orange-500 text-white rounded-full shadow-lg text-xl"
             >
               ?
@@ -170,7 +168,7 @@ function App() {
         <>
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center gap-3">
             <button
-              onClick={() => startLoading(() => setShowTicket(false))}
+              onClick={() => setShowTicket(false)} // NO loading
               className="text-xl font-bold"
             >
               ←
@@ -203,7 +201,7 @@ function App() {
 
                 <div className="flex justify-end pt-3">
                   <button
-                    onClick={() => startLoading()}
+                    onClick={startLoading}
                     className="text-orange-500 font-semibold"
                   >
                     ⟳ NEXT TRAINS
