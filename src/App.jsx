@@ -40,7 +40,7 @@ function App() {
       {/* ================= HOME PAGE ================= */}
       {!showTicket && !loading && !noInternet && (
         <>
-          {/* HEADER */}
+         
           <div className="bg-gradient-to-r from-orange-400 to-orange-500 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
